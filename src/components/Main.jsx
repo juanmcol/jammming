@@ -16,7 +16,7 @@ function Main() {
 
     return (
         <main>
-            <SearchBar search={search} setSearch={setSearch}/>
+            <SearchBar setSearch={setSearch}/>
             <SearchResults results={search}/>
         </main>
     );

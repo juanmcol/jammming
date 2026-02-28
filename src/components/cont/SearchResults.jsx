@@ -1,8 +1,7 @@
 function SearchResults({results}) {
-
     return (
         <>
-            <p>results = {results}</p>
+            <p>{results}</p>
         </>
     );
 }

@@ -1,13 +1,13 @@
-import {useState} from 'react';
-
-function SearchBar({search, setSearch}) {
-    const handleSearch = (e) => {
-        setSearch(e.target.value);
+function SearchBar({setSearch}) {
+    const handleSearch = () => {
+        setSearch(document.getElementById("search-bar").value);
     };
 
     return (
-        <input type="text" className="search-bar" placeholder="search"
-        value={search} onChange={handleSearch}></input>
+        <>
+            <input id="search-bar" type="search" placeholder="type here..."></input>
+            <button onClick={handleSearch}>Search</button>
+        </>
     );
 }
 
