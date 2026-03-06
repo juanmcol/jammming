@@ -1,7 +1,12 @@
-import {useState} from 'react';
+// hooks
+import {useState, useEffect} from 'react';
 
+// components
 import SearchBar from "./cont/SearchBar";
 import SearchResults from "./cont/SearchResults";
+
+// api
+import getSpotifyToken from "../services/spotifyAPI";
 
 /* TODO
 - results should show spotify api data
@@ -13,6 +18,10 @@ import SearchResults from "./cont/SearchResults";
 
 function Main() {
     const [search, setSearch] = useState("");
+
+    useEffect(() => {
+        getSpotifyToken();
+    }, []);
 
     return (
         <main>

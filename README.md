@@ -5,8 +5,8 @@
 WIP
 
 ### TO-DO
-- results should show some spotify api data
 - add tracks to playlist when clicked
+- add filters (optional)
 - ability to name the playlist
 - button to save the playlist to a spotify account
 - add css
