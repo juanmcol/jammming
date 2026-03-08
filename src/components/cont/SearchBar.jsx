@@ -1,25 +1,75 @@
 /* TODO
-create filters for artist, playlist, etc.
+get spotify premium, since I keep getting 403 responses when using the search for item endpoint.
+it was worked a few times before, but now it just keeps giving 403s.
+either it's limited to a certain amount of requests, or I've exhausted my trial (~5 requests) and need premium for more.
+
+create filters/types for artist, playlist, etc.
+use select/dropdown for a simple search, checkboxes and textboxes for an advanced search
 create states for those filters
-use &type=filter
-use %2Cfilter to add more filters
+display textboxes when filters are enabled
+add the text values in those boxes to the url
+
+the following may not be the entirely accurate,
+use &type=typeName
+use filter%3 to add more filters
+use %2CtypeName to add more types
 put the filters in a string and add them to the end of the url
 use &limit=number for to limit the maximum number of results to return
 the limit goes at the end of the url
-example: "https://api.spotify.com/v1/search?q=claire+de+lune&type=track%2Cplaylist&limit=3"
+example: "https://api.spotify.com/v1/search?q=remaster%20track:Doxy%20artist:Miles%20Davis&type=album&limit=3"
+example: "https://api.spotify.com/v1/search?q=Clair%20de%20lune%20artist:Claude%20Debussy&type=track%2Calbum&limit=5"
+
+using + is supposedly better for query strings
+example: "https://api.spotify.com/v1/search?q=Clair+de+lune%20artist:Claude+Debussy&type=track%2Calbum&limit=5"
+"https://api.spotify.com/v1/search?q=fly+me+to+the+moon&type=track&limit=10"
+
+possible filters
+artist and year for albums, artists, and tracks
+album for albums, and tracks
+genre for artists, and tracks
+isrc?, and track for tracks
+track, artist, and year for albums
 
 test to see what works or is allowed on a free account
 manipulating account profile data, and adding a new playlist, might not be allowed without premium
-currently getting 403 errors, when attempting to get the current user's profile with 'https://api.spotify.com/v1/me' 
+currently getting 403 errors, when attempting to get the current user's profile with 'https://api.spotify.com/v1/me'
 
-list of what endpoint changes from Feb 2026
+list of endpoint changes, Feb 2026
 https://developer.spotify.com/documentation/web-api/references/changes/february-2026
 */
 
-function SearchBar({setSearch}) {
+import { useEffect, useState } from "react";
+
+
+function SearchBar({setData}) {
+    // search bar
+    const [search, setSearch] = useState("fly%20me%20to%20the%20moon");
+    const handleSearchBar = (e) => {
+        let text = e.target.value;
+        text = text.replaceAll(" ", "%20");
+        setSearch(text);
+    }
+
+    // categories
+    const [category, setCategory] = useState("track");
+    const handleCategory = (e) => {
+        if (e.target.value === "track")
+            setCategory("track");
+        else if (e.target.value === "artist")
+            setCategory("artist");
+        else if (e.target.value === "album")
+            setCategory("album");
+    }
+
+    // get api data
     async function getData() {
         let accessToken = localStorage.getItem('access_token');
-        let url = 'https://api.spotify.com/v1/search?q=claire+de+lune&type=track&limit=1';
+        // let url = 'https://api.spotify.com/v1/search?q=clair+de+lune&type=track&limit=5';
+        // let url = 'https://api.spotify.com/v1/search?q=remaster%2520track%3ADoxy%2520artist%3AMiles%2520Davis&type=album';
+        let url = 'https://api.spotify.com/v1/search?q=';
+        url += search;
+        url += "&type=" + category + "&limit=5";
+        console.log(url);
 
         try {
             const response = await fetch(url, {
@@ -33,21 +83,28 @@ function SearchBar({setSearch}) {
             }
 
             const result = await response.json();
-            console.log(result);
-            setSearch(JSON.stringify(result));
+            console.log(JSON.stringify(result));
+            setData(JSON.stringify(result));
         } catch (error) {
             console.error(error.message);
         }
     }
 
-    const handleSearch = () => {
+    // search button onClick event handler, get api data
+    const handleSearchButton = () => {
         getData();
     };
 
     return (
         <>
-            <input id="search-bar" type="search" placeholder="type here..."></input>
-            <button onClick={handleSearch}>Search</button>
+            <input id="search-bar" type="search" placeholder="type here..." onChange={handleSearchBar}></input>
+            <label htmlFor="category-select"></label>
+            <select name="categories" id="category-select" onChange={handleCategory}>
+                <option value="track">track</option>
+                <option value="artist">artist</option>
+                <option value="album">album</option>
+            </select>
+            <button onClick={handleSearchButton}>Search</button>
         </>
     );
 }

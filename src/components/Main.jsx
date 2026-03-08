@@ -17,7 +17,7 @@ import getSpotifyToken from "../services/spotifyAPI";
 */
 
 function Main() {
-    const [search, setSearch] = useState("");
+    const [data, setData] = useState("");
 
     useEffect(() => {
         getSpotifyToken();
@@ -25,8 +25,8 @@ function Main() {
 
     return (
         <main>
-            <SearchBar setSearch={setSearch}/>
-            <SearchResults results={search}/>
+            <SearchBar setData={setData}/>
+            <SearchResults results={data}/>
         </main>
     );
 }
