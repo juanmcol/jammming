@@ -79,6 +79,7 @@ function SearchBar({setData}) {
             });
 
             if (!response.ok) {
+                setData(`Response status: ${response.status}`);
                 throw new Error(`Response status: ${response.status}`);
             }
 
