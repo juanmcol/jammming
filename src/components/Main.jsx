@@ -26,7 +26,7 @@ function Main() {
     return (
         <main>
             <SearchBar setData={setData}/>
-            <SearchResults results={data}/>
+            <SearchResults data={data}/>
         </main>
     );
 }

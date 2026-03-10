@@ -1,8 +1,4 @@
 /* TODO
-get spotify premium, since I keep getting 403 responses when using the search for item endpoint.
-it was worked a few times before, but now it just keeps giving 403s.
-either it's limited to a certain amount of requests, or I've exhausted my trial (~5 requests) and need premium for more.
-
 create filters/types for artist, playlist, etc.
 use select/dropdown for a simple search, checkboxes and textboxes for an advanced search
 create states for those filters
@@ -29,10 +25,6 @@ album for albums, and tracks
 genre for artists, and tracks
 isrc?, and track for tracks
 track, artist, and year for albums
-
-test to see what works or is allowed on a free account
-manipulating account profile data, and adding a new playlist, might not be allowed without premium
-currently getting 403 errors, when attempting to get the current user's profile with 'https://api.spotify.com/v1/me'
 
 list of endpoint changes, Feb 2026
 https://developer.spotify.com/documentation/web-api/references/changes/february-2026
@@ -69,7 +61,6 @@ function SearchBar({setData}) {
         let url = 'https://api.spotify.com/v1/search?q=';
         url += search;
         url += "&type=" + category + "&limit=5";
-        console.log(url);
 
         try {
             const response = await fetch(url, {
@@ -84,8 +75,9 @@ function SearchBar({setData}) {
             }
 
             const result = await response.json();
-            console.log(JSON.stringify(result));
-            setData(JSON.stringify(result));
+            sessionStorage.setItem('data', JSON.stringify(result));
+            sessionStorage.setItem('query', url);
+            setData(result);
         } catch (error) {
             console.error(error.message);
         }
