@@ -7,9 +7,9 @@ import SearchResults from "./cont/SearchResults";
 
 // api
 import getSpotifyToken from "../services/spotifyAPI";
+import Playlist from './cont/Playlist';
 
 /* TODO
-- results should show spotify api data
 - add tracks to playlist when clicked
 - ability to name the playlist
 - button to save the playlist to a spotify account
@@ -19,14 +19,24 @@ import getSpotifyToken from "../services/spotifyAPI";
 function Main() {
     const [data, setData] = useState("");
 
+    // Band-aid fix to automatically getting a new token, without having to delete local storage manually.
+    // Figure out how to use the refresh_token.
     useEffect(() => {
-        getSpotifyToken();
+        if (localStorage.getItem('access_token') === null) {
+            getSpotifyToken();
+            localStorage.setItem('time_set', Date.now());
+        } else if (Date.now() - Number(localStorage.getItem('time_set')) >= 3600000) {
+            localStorage.removeItem('access_token');
+            getSpotifyToken();
+            localStorage.setItem('time_set', Date.now());
+        }
     }, []);
 
     return (
         <main>
             <SearchBar setData={setData}/>
             <SearchResults data={data}/>
+            <Playlist/>
         </main>
     );
 }

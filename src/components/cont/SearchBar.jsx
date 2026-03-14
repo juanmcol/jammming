@@ -30,7 +30,7 @@ list of endpoint changes, Feb 2026
 https://developer.spotify.com/documentation/web-api/references/changes/february-2026
 */
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 
 function SearchBar({setData}) {
@@ -62,24 +62,26 @@ function SearchBar({setData}) {
         url += search;
         url += "&type=" + category + "&limit=5";
 
-        try {
-            const response = await fetch(url, {
-                headers: {
-                    Authorization: 'Bearer ' + accessToken
+        if (search !== "") {
+            try {
+                const response = await fetch(url, {
+                    headers: {
+                        Authorization: 'Bearer ' + accessToken
+                    }
+                });
+    
+                if (!response.ok) {
+                    setData(`Response status: ${response.status}`);
+                    throw new Error(`Response status: ${response.status}`);
                 }
-            });
-
-            if (!response.ok) {
-                setData(`Response status: ${response.status}`);
-                throw new Error(`Response status: ${response.status}`);
+    
+                const result = await response.json();
+                sessionStorage.setItem('data', JSON.stringify(result));
+                sessionStorage.setItem('query', url);
+                setData(result);
+            } catch (error) {
+                console.error(error.message);
             }
-
-            const result = await response.json();
-            sessionStorage.setItem('data', JSON.stringify(result));
-            sessionStorage.setItem('query', url);
-            setData(result);
-        } catch (error) {
-            console.error(error.message);
         }
     }
 
