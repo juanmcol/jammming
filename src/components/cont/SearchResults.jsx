@@ -1,6 +1,6 @@
 import Tracklist from "./Tracklist";
 
-function SearchResults({data}) {
+function SearchResults({data, playlist, setPlaylist}) {
     function Artists() {
         return (
             <div id="artists">
@@ -36,7 +36,7 @@ function SearchResults({data}) {
 
     return (
         <>
-            {data.tracks != undefined ? <Tracklist tracks={data.tracks.items} /> : null }
+            {data.tracks != undefined ? <Tracklist tracks={data.tracks.items} playlist={playlist} setPlaylist={setPlaylist}/> : null }
             {data.artists != undefined ? <Artists /> : null}
             {data.albums != undefined ? <Albums /> : null }
         </>

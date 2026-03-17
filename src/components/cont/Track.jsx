@@ -1,11 +1,30 @@
-function Track({index, track, id}) {
+function Track({keyNum, track, index, tracks, playlist, setPlaylist}) {
+    function handleClick(e) {
+        const button = e.target;
+        const track = button.parentElement;
+        const div = track.parentElement;
+
+        if (div.id === "tracklist") {
+            setPlaylist(
+                [
+                    ...playlist,
+                    tracks[track.id]
+                ]
+            );
+        } else {
+            setPlaylist (
+                playlist.filter((current, index) => index !== Number(track.id))
+            )
+        }
+    }
+
     return (
-        <div index={index} className="track" id={id}>
+        <div key={keyNum} id={String(index)} className="track">
             <img src={track.album.images[0] != undefined ? track.album.images[0].url : ""} alt=""/>
             <p>{track.name}</p>
             <p>by {track.artists[0].name}</p>
             <p>{track.album.name}</p>
-            <button className="add-button">Add</button>
+            <button className="add-button" onClick={handleClick}>Add</button>
         </div>
     )
 }

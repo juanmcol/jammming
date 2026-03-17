@@ -1,11 +1,12 @@
 import Track from "./Track";
 
-function Tracklist({tracks}) {
+function Tracklist({tracks, playlist, setPlaylist}) {
+
     return (
         <div id="tracklist">
             {tracks.map((track, index) => {
                 return (
-                    <Track key={index} track={track} id={`track-${index + 1}`}/>
+                    <Track keyNum={index} track={track} index={index} tracks={tracks} playlist={playlist} setPlaylist={setPlaylist}/>
                 )
             })}
         </div>

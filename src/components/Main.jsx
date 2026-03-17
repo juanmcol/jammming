@@ -10,14 +10,12 @@ import getSpotifyToken from "../services/spotifyAPI";
 import Playlist from './cont/Playlist';
 
 /* TODO
-- add tracks to playlist when clicked
-- ability to name the playlist
-- button to save the playlist to a spotify account
-- add css
+- Check README
 */
 
 function Main() {
     const [data, setData] = useState("");
+    const [playlist, setPlaylist] = useState([]);
 
     // Band-aid fix to automatically getting a new token, without having to delete local storage manually.
     // Figure out how to use the refresh_token.
@@ -32,11 +30,15 @@ function Main() {
         }
     }, []);
 
+    useEffect(() => {
+        console.log(playlist);
+    }, [playlist])
+
     return (
         <main>
             <SearchBar setData={setData}/>
-            <SearchResults data={data}/>
-            <Playlist/>
+            <SearchResults data={data} playlist={playlist} setPlaylist={setPlaylist}/>
+            <Playlist playlist={playlist} setPlaylist={setPlaylist} tracks={data.tracks != undefined ? data.tracks.items : ""}/>
         </main>
     );
 }

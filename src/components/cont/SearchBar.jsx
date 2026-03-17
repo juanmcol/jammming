@@ -1,4 +1,4 @@
-/* TODO
+/* Possible Extra Filters Idea and Guide
 create filters/types for artist, playlist, etc.
 use select/dropdown for a simple search, checkboxes and textboxes for an advanced search
 create states for those filters
