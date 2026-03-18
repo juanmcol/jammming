@@ -7,6 +7,10 @@ function Playlist({data, playlist, setPlaylist, uris}) {
             let accessToken = localStorage.getItem('access_token');
             let url = 'https://api.spotify.com/v1/me/playlists';
             let playlistName = document.getElementById("playlist-name").value;
+            
+            if (playlistName === "") {
+                playlistName = "My Jammming Playlist";
+            }
 
             try {
                 const response = await fetch(url, {
