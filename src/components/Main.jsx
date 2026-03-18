@@ -14,8 +14,9 @@ import Playlist from './cont/Playlist';
 */
 
 function Main() {
-    const [data, setData] = useState("");
+    const [data, setData] = useState({"tracks":{"items":[]}, "artists":{"items":[]}, "albums":{"items":[]}});
     const [playlist, setPlaylist] = useState([]);
+    const [uris, setUris] = useState([]);
 
     // Band-aid fix to automatically getting a new token, without having to delete local storage manually.
     // Figure out how to use the refresh_token.
@@ -24,6 +25,7 @@ function Main() {
             getSpotifyToken();
             localStorage.setItem('time_set', Date.now());
         } else if (Date.now() - Number(localStorage.getItem('time_set')) >= 3600000) {
+            // maybe the refresh token function could go here...
             localStorage.removeItem('access_token');
             getSpotifyToken();
             localStorage.setItem('time_set', Date.now());
@@ -31,14 +33,14 @@ function Main() {
     }, []);
 
     useEffect(() => {
-        console.log(playlist);
+        setUris(playlist.map((track) => track.uri))
     }, [playlist])
 
     return (
         <main>
             <SearchBar setData={setData}/>
             <SearchResults data={data} playlist={playlist} setPlaylist={setPlaylist}/>
-            <Playlist playlist={playlist} setPlaylist={setPlaylist} tracks={data.tracks != undefined ? data.tracks.items : ""}/>
+            <Playlist data={data} playlist={playlist} setPlaylist={setPlaylist} uris={uris}/>
         </main>
     );
 }

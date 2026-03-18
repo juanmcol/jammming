@@ -66,12 +66,11 @@ function SearchBar({setData}) {
             try {
                 const response = await fetch(url, {
                     headers: {
-                        Authorization: 'Bearer ' + accessToken
+                        'Authorization': 'Bearer ' + accessToken
                     }
                 });
     
                 if (!response.ok) {
-                    setData(`Response status: ${response.status}`);
                     throw new Error(`Response status: ${response.status}`);
                 }
     

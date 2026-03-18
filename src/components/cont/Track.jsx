@@ -1,4 +1,4 @@
-function Track({keyNum, track, index, tracks, playlist, setPlaylist}) {
+function Track({keyNum, track, index, tracks, playlist, setPlaylist, buttonSymbol}) {
     function handleClick(e) {
         const button = e.target;
         const track = button.parentElement;
@@ -24,7 +24,7 @@ function Track({keyNum, track, index, tracks, playlist, setPlaylist}) {
             <p>{track.name}</p>
             <p>by {track.artists[0].name}</p>
             <p>{track.album.name}</p>
-            <button className="add-button" onClick={handleClick}>Add</button>
+            <button className="track-button" onClick={handleClick}>{buttonSymbol}</button>
         </div>
     )
 }

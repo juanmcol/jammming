@@ -37,7 +37,7 @@ async function getSpotifyToken () {
         // Request User Authorization
         // Redirect to the Spotify authorization server login page by updating the window.location object value.
         // This allows the user to grant permissions to the application.
-        const scope = 'user-read-private user-read-email';
+        const scope = 'user-read-private user-read-email playlist-modify-public playlist-modify-private';
         const authUrl = new URL("https://accounts.spotify.com/authorize");
 
         window.localStorage.setItem('code_verifier', codeVerifier);
@@ -85,12 +85,13 @@ async function getSpotifyToken () {
 
         if (response.access_token) {
             localStorage.setItem('access_token', response.access_token);
+            localStorage.setItem('refresh_token', response.refresh_token);
             localStorage.removeItem('code_verifier');
             window.history.replaceState({}, document.title, redirectUri);
         }
-        console.log(response.access_token);
     }
 }
+
 // use getToken, and then use the https://api.spotify.com/v1/search endpoint
 // to search through the Spotify Catalogue (in the onClick handler for the search button).
 export default getSpotifyToken;

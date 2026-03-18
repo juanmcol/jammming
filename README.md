@@ -8,9 +8,8 @@ Spotify's recent changes to their API:
 https://developer.spotify.com/documentation/web-api/references/changes/february-2026
 
 ### TO-DO
-- Make the add button be "remove" instead of "add" when the track component is in the playlist div.
-- Set the name for the playlist with the value for its text input.
-- Button to save the playlist to a spotify account.
+- Use the refresh_token, instead of my band-aid fix.
+- Allow the user to set the playlist to public or private, before saving.
 - Add CSS.
 - Optimize for mobile.
 
