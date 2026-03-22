@@ -63,9 +63,11 @@ function Playlist({data, playlist, setPlaylist, uris}) {
     }
 
     return (
-        <>
-            <h2>Playlist</h2>
-            <input type="text" placeholder="Custom Name" id="playlist-name"></input>
+        <div id="playlist">
+            <div id="playlist-creation">
+                <input type="text" placeholder="Custom Name" id="playlist-name"></input>
+                <button onClick={() => createPlaylist(uris)}>Save To Spotify</button>
+            </div>
             <div id="playlist-tracks">
                 {
                     data.tracks != undefined ? 
@@ -77,8 +79,7 @@ function Playlist({data, playlist, setPlaylist, uris}) {
                         null
                 }
             </div>
-            <button onClick={() => createPlaylist(uris)}>Save To Spotify</button>
-        </>
+        </div>
     )
 }
 

@@ -1,7 +1,7 @@
 function Footer() {
     return (
         <footer>
-            <p>copyright juanmcol (exc. The Spotify API)</p>
+            <p>copyright juanmcol (excl. Spotify's API and data)</p>
         </footer>
     );
 }

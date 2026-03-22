@@ -21,9 +21,11 @@ function Track({keyNum, track, index, tracks, playlist, setPlaylist, buttonSymbo
     return (
         <div key={keyNum} id={String(index)} className="track">
             <img src={track.album.images[0] != undefined ? track.album.images[0].url : ""} alt=""/>
-            <p>{track.name}</p>
-            <p>by {track.artists[0].name}</p>
-            <p>{track.album.name}</p>
+            <div className="track-info">
+                <p className="track-name">{track.name}</p>
+                <p className="track-artists">by {track.artists[0].name}</p>
+                <p className="track-album">{track.album.name}</p>
+            </div>
             <button className="track-button" onClick={handleClick}>{buttonSymbol}</button>
         </div>
     )

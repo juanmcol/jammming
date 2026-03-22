@@ -60,7 +60,7 @@ function SearchBar({setData}) {
         // let url = 'https://api.spotify.com/v1/search?q=remaster%2520track%3ADoxy%2520artist%3AMiles%2520Davis&type=album';
         let url = 'https://api.spotify.com/v1/search?q=';
         url += search;
-        url += "&type=" + category + "&limit=5";
+        url += "&type=" + category + "&limit=10";
 
         if (search !== "") {
             try {
@@ -90,16 +90,16 @@ function SearchBar({setData}) {
     };
 
     return (
-        <>
-            <input id="search-bar" type="search" placeholder="type here..." onChange={handleSearchBar}></input>
+        <div id="search-bar-div">
+            <input type="search" id="search-bar" placeholder="type here..." onChange={handleSearchBar}></input>
             <label htmlFor="category-select"></label>
             <select name="categories" id="category-select" onChange={handleCategory}>
                 <option value="track">track</option>
                 <option value="artist">artist</option>
                 <option value="album">album</option>
             </select>
-            <button onClick={handleSearchButton}>Search</button>
-        </>
+            <button onClick={handleSearchButton}>search</button>
+        </div>
     );
 }
 

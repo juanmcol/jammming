@@ -1,0 +1,157 @@
+header {
+    height: 5rem;
+    background-color: darkgreen;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main {
+    display: flex;
+    margin-bottom: 2rem;
+
+    #search-div {
+        width: 50%;
+        /* border: 4px solid red; */
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding-bottom: 4rem;
+
+        #search-main {
+            /* border: 4px solid green; */
+            width: 40rem;
+
+            #search-bar-div {
+                height: 4rem;
+                width: 40rem;
+                /* background-color: gray; */
+                
+                display: flex;
+                
+                input, select {
+                    border: none;
+                    background-color: white;
+                    font-size: 1.5rem;
+                }
+
+                input {
+                    width: 22rem;
+                    padding: 0 2rem;
+                }
+
+                select {
+                    width: 8rem;
+                    padding: 1rem;
+                }
+
+                button {
+                    font-size: 1.5rem;
+                    padding: 0 1rem;
+                    width: 10rem;
+                }
+            }
+    
+            #search-results {
+                width: 40rem;    
+            }
+        }
+
+    }
+
+    #playlist-div {
+        width: 50%;
+        /* border: 4px solid yellow; */
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding-bottom: 4rem;
+    
+        #playlist {
+            /* border: 4px solid green; */
+            width: 40rem;
+
+            #playlist-creation {
+                display: flex;
+
+                input {
+                    font-size: 1.5rem;
+                    width: 25.75rem;
+                    height: 4rem;
+                    padding: 0 2rem;
+                }
+
+                button {
+                    font-size: 1.25rem;
+                    width: 10rem;
+                }
+            }
+        }
+    }
+
+}
+
+footer {
+    background-color: darkgreen;
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    height: 2rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.track {
+    display: flex;
+
+    img {
+        height: 10rem;
+    }
+
+    .track-info {
+        width: 18rem;
+        height: 10rem;
+
+        margin: 0 1rem;
+
+        align-content: center;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-behavior: auto;
+        
+        .track-name {
+            font-size: 1.25rem;
+        }
+
+        .track-name, .track-artists, .track-album {
+            white-space: nowrap;
+            /* animation: 10s ease-in-out infinite auto-scroll; */
+        }
+
+
+    }
+
+    button {
+        width: 10rem;
+        font-size: 1.5rem;
+    }
+}
+
+/* @keyframes auto-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    10% {
+        transform: translate(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+} */

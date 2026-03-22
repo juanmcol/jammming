@@ -35,11 +35,11 @@ function SearchResults({data, playlist, setPlaylist}) {
     }
 
     return (
-        <>
+        <div id="search-results">
             {data.tracks != undefined ? <Tracklist tracks={data.tracks.items} playlist={playlist} setPlaylist={setPlaylist}/> : null }
             {data.artists != undefined ? <Artists /> : null}
             {data.albums != undefined ? <Albums /> : null }
-        </>
+        </div>
     );
 }
 

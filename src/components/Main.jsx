@@ -38,9 +38,17 @@ function Main() {
 
     return (
         <main>
-            <SearchBar setData={setData}/>
-            <SearchResults data={data} playlist={playlist} setPlaylist={setPlaylist}/>
-            <Playlist data={data} playlist={playlist} setPlaylist={setPlaylist} uris={uris}/>
+            <div id="search-div">
+                <h2 id="search-header">Search Spotify</h2>
+                <div id="search-main">
+                    <SearchBar setData={setData}/>
+                    <SearchResults data={data} playlist={playlist} setPlaylist={setPlaylist}/>
+                </div>
+            </div>
+            <div id="playlist-div">
+                <h2 id="playlist-header">Create a Playlist</h2>
+                <Playlist data={data} playlist={playlist} setPlaylist={setPlaylist} uris={uris}/>
+            </div>
         </main>
     );
 }

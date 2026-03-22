@@ -10,9 +10,9 @@ function App() {
 
   return (
     <>
-      <Header className="header"/>
-      <Main className="main"/>
-      <Footer className="footer"/>
+      <Header/>
+      <Main/>
+      <Footer/>
     </>
   );
 }
