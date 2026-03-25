@@ -113,7 +113,7 @@ main {
                     width: 65%;
                     padding: 0 2rem;
                     border: none;
-                    background-color: transparent;
+                    background-color: rgb(15,15,15);
                     color: white;
                 }
 
@@ -194,6 +194,22 @@ footer {
         justify-content: center;
         align-items: center;
     }
+}
+
+button:hover {
+    color: rgb(15,15,15) !important;
+}
+
+input:hover {
+    background-color: rgb(25,25,25) !important;
+}
+
+select:hover {
+    background-color: rgb(50,50,50) !important;
+}
+
+button:active {
+    font-size: 1rem !important;
 }
 
 /* @keyframes auto-scroll {
