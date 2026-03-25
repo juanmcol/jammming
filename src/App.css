@@ -5,11 +5,19 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    img {
+        height: 4rem;
+        width: 4rem;
+        background-color: black;
+        border-radius: 2rem;
+    }
 }
 
 main {
     display: flex;
     margin-bottom: 2rem;
+    padding: 4rem 0;
 
     #search-div {
         width: 50%;
@@ -19,10 +27,17 @@ main {
         flex-direction: column;
         align-items: center;
 
-        padding-bottom: 4rem;
+        padding-bottom: 6rem;
+
+        #search-header {
+            font-size: 2rem;
+        }
 
         #search-main {
-            /* border: 4px solid green; */
+            background-color: rgb(15,15,15);
+            border-radius: 1rem;
+            overflow: hidden;
+
             width: 40rem;
 
             #search-bar-div {
@@ -34,8 +49,9 @@ main {
                 
                 input, select {
                     border: none;
-                    background-color: white;
+                    background-color: transparent;
                     font-size: 1.5rem;
+                    color: white;
                 }
 
                 input {
@@ -47,20 +63,24 @@ main {
                     width: 20%;
                     padding: 1rem;
                     text-align: center;
+                    background-color: rgb(35,35,35);
                 }
 
                 button {
                     font-size: 1.5rem;
                     padding: 0 1rem;
                     width: 25%;
+                    border: 1px solid green;
+                    background-color: green;
+                    color: white;
                 }
             }
     
             #search-results {
-                width: 100%;    
+                width: 100%;
+                background-color: rgb(25,25,25);
             }
         }
-
     }
 
     #playlist-div {
@@ -71,25 +91,39 @@ main {
         flex-direction: column;
         align-items: center;
 
-        padding-bottom: 4rem;
+        padding-bottom: 6rem;
+
+        #playlist-header {
+            font-size: 2rem;
+        }
     
         #playlist {
             /* border: 4px solid green; */
             width: 40rem;
+            background-color: rgb(25,25,25);
+            border-radius: 1rem;
+            overflow: hidden;
 
             #playlist-creation {
                 display: flex;
+                height: 4rem;
 
                 input {
                     font-size: 1.5rem;
-                    width: 64.375%;
-                    height: 4rem;
+                    width: 65%;
                     padding: 0 2rem;
+                    border: none;
+                    background-color: transparent;
+                    color: white;
                 }
 
                 button {
                     font-size: 1.25rem;
                     width: 25%;
+                    padding: 0 1rem;
+                    border: 1px solid green;
+                    background-color: green;
+                    color: white;
                 }
             }
         }
@@ -110,6 +144,7 @@ footer {
 }
 
 .track {
+    border-top: 1px solid rgb(40,40,40);
     width: 100%;
     height: 10rem;
     display: flex;
@@ -137,13 +172,27 @@ footer {
             white-space: nowrap;
             /* animation: 10s ease-in-out infinite auto-scroll; */
         }
+    }
 
-
+    .button-area {
+        width: 24.75%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     button {
-        width: 24.9%;
+        /* width: 24.9%; */
+        width: 25%;
+        height: 25%;
         font-size: 1.5rem;
+        color: white;
+        background-color: green;
+        border: 4px solid green;
+        border-radius: 0.75rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
 
@@ -169,6 +218,7 @@ footer {
 
             #search-main {
                 width: 100%;
+                border-radius: 0;
             }
         }
 
@@ -177,6 +227,7 @@ footer {
 
             #playlist {
                 width: 100%;
+                border-radius: 0;
             }
         }
     }
@@ -219,12 +270,17 @@ footer {
 
         button {
             width: 24.75%;
+            padding-bottom: 2%;
         }
     }
 
     #playlist-creation {
         input {
             width: 58.5% !important;
+        }
+
+        button {
+            font-size: 1rem !important;
         }
     }
 }
